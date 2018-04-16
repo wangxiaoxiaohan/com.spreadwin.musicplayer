@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_state_bg"
+    android:id="@+id/drawer">
+       <!--顶部按钮们-->
+      <RelativeLayout
+
+          android:layout_width="match_parent"
+          android:layout_height="50dp">
+          <ImageView
+              android:src="@drawable/bt_extension_normal"
+              android:layout_centerVertical="true"
+              android:layout_alignParentLeft="true"
+              android:id="@+id/image_change"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <TextView
+              android:layout_centerVertical="true"
+              android:layout_marginLeft="5dp"
+              android:layout_toRightOf="@id/image_change"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/music_list"
+              android:textColor="@color/white"
+
+              />
+             <TextView
+
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/local_music"
+                 android:layout_centerInParent="true"
+                 android:textColor="@color/white"
+                 />
+             <TextView
+                   android:id="@+id/text_sound_regulation"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:text="@string/sound_regulation"
+                   android:textColor="@color/white"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+             <ImageView
+                 android:layout_marginRight="5dp"
+                 android:layout_centerVertical="true"
+                 android:layout_toLeftOf="@id/text_sound_regulation"
+                 android:src="@drawable/bt_volume"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+
+
+
+      </RelativeLayout>
+      <!--歌曲播放页面和歌曲列表页面-->
+      <RelativeLayout
+          android:layout_margin="10dp"
+
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <!--歌曲列表-->
+           <LinearLayout
+
+               android:orientation="vertical"
+               android:id="@+id/ll_list"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent">
+
+           </LinearLayout>
+           <!--歌曲播放页面-->
+           <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+               android:background="@drawable/music_right_bg"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_toRightOf="@id/ll_list"
+
+                android:id="@+id/ll_play"
+               >
+
+               <RelativeLayout
+
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <ImageView
+                       android:layout_marginLeft="20dp"
+                       android:layout_margin="20dp"
+
+                       android:id="@+id/recycle_model"
+
+                       android:layout_alignParentLeft="true"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+               </RelativeLayout>
+               <FrameLayout
+                   android:layout_marginTop="20dp"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:layout_gravity="center"
+                       android:layout_width="290dp"
+                       android:layout_height="290dp"
+                       android:src="@drawable/music_bg"
+                       />
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/cd_cover"
+                       android:layout_gravity="center"
+                       android:layout_width="250dp"
+                       android:layout_height="250dp"
+                       android:src="@drawable/normal_pic_1"
+                       />
+               </FrameLayout>
+
+               <TextView
+                   android:textColor="@color/white"
+                   android:id="@+id/songname"
+                   android:layout_marginTop="20dp"
+                   android:text="@string/song_name"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <LinearLayout
+                   android:layout_marginTop="20dp"
+                   android:orientation="horizontal"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <ImageView
+                       android:id="@+id/bt_previous"
+                       android:layout_marginRight="100dp"
+                       android:src="@drawable/bt_on_a"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+                   <ImageView
+                       android:id="@+id/bt_playorpause"
+                       android:src="@drawable/bt_stop"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+                   <ImageView
+                       android:id="@+id/bt_next"
+                       android:layout_marginLeft="100dp"
+                       android:src="@drawable/bt_next"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_marginTop="20dp"
+                   android:orientation="horizontal"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:textColor="@color/white"
+                        android:id="@+id/current_time"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+                   <SeekBar
+                       android:layout_gravity="center_vertical"
+                       android:id="@+id/seekBar"
+                       android:thumb="@drawable/seekbarthumb"
+                       android:progressDrawable="@drawable/seekbarprogress"
+                       android:layout_width="500dp"
+                       android:layout_height="wrap_content" />
+                   <TextView
+                       android:textColor="@color/white"
+                       android:id="@+id/total_time"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </RelativeLayout>
+
+</LinearLayout>

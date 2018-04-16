@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   android:layout_marginLeft="10dp"
+    android:layout_margin="10dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    >
+     <TextView
+         android:textSize="10sp"
+         android:visibility="gone"
+         android:id="@+id/tag"
+         android:textColor="@color/white"
+         android:background="@drawable/music_normal_bg"
+         android:layout_width="match_parent"
+         android:layout_height="30dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_song_item"
+              android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginRight="40dp"
+                android:maxEms="20"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:id="@+id/music_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:id="@+id/singer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/music_status"
+            android:src="@drawable/bt_stop1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+     <View
+         android:background="@color/white"
+         android:layout_width="match_parent"
+         android:layout_height="1dp"/>
+
+</LinearLayout>
