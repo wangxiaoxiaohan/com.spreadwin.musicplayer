@@ -225,6 +225,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
           
         };
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction mTransaction = fragmentManager.beginTransaction();
+        mTransaction.replace(R.id.ll_list,listFragment).commit();
+
 
 
     }
@@ -301,8 +305,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         setMvpMusic(music);
         mSeekBar.setMax(player.getDuration());
         mSeekBar.setProgress(player.getCurrentPosition());
-        mCurrentTime.setText("00:"+DateUtils.getTime(player.getCurrentPosition()));
-        mTotalTime.setText("00:"+DateUtils.getTime(player.getDuration()));
+        mCurrentTime.setText(DateUtils.getTime(player.getCurrentPosition()));
+        mTotalTime.setText(DateUtils.getTime(player.getDuration()));
 
     }
 
@@ -438,30 +442,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.image_change:
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction mTransaction = fragmentManager.beginTransaction();
+
 
                 if (isListVisibility){
                     ll_list.setVisibility(View.GONE);
-                    mTransaction.remove(listFragment);
+
                     image_change.setImageDrawable(getResources().getDrawable(R.drawable.bt_extension_normal));
                     isListVisibility=false;
                     image_recycle_model.setVisibility(View.VISIBLE);
-                    try {
-                        Thread.sleep(200);
-                        image_recycle_model.setVisibility(View.VISIBLE);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
 
                 }else {
                     ll_list.setVisibility(View.VISIBLE);
-                    mTransaction.replace(R.id.ll_list,listFragment).commit();
+
 
                     image_change.setImageDrawable(getResources().getDrawable(R.drawable.bt_extension_down));
                     isListVisibility=true;

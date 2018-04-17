@@ -86,6 +86,8 @@ public class MusicListAdapter extends  RecyclerView.Adapter<MusicListAdapter.Vie
                    });
                    if (position==playPosition){
                        holder.status.setImageResource(R.drawable.ic_play1);
+                   }else {
+                       holder.status.setImageResource(R.drawable.bt_stop1);
                    }
 
 

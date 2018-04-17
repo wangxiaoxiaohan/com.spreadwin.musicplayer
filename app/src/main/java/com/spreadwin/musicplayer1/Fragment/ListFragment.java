@@ -140,6 +140,7 @@ public class ListFragment extends Fragment {
        EventBus.getDefault().unregister(this);
         super.onDestroyView();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void  onEvent(LoopEvent event){
         CurrentState=event.getCurrentState();
