@@ -6,8 +6,8 @@ android {
         applicationId "com.spreadwin.musicplayer1"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 18041800
+        versionName "18041800"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicPlayer</string>
+    <string name="app_name">本地音乐</string>
     <string name="song_name">歌曲名称</string>
 
     <string name="music_list">播放列表</string>

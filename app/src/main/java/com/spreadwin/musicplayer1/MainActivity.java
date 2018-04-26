@@ -10,8 +10,6 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
@@ -35,16 +33,13 @@ import com.spreadwin.musicplayer1.utils.DateUtils;
 import com.spreadwin.musicplayer1.utils.MediaUtils;
 import com.spreadwin.musicplayer1.utils.MusicComparator;
 import com.spreadwin.musicplayer1.utils.PinyinUtils;
-import com.spreadwin.musicplayer1.utils.SortModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -125,7 +120,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             //汉字转换成拼音
             String sortString = PinyinUtils.getPingYin(music.getTitle()).substring(0, 1).toUpperCase();
-            Log.d(TAG, "filledData: "+sortString);
+            Log.d("Main", "filledData: "+sortString);
             // 正则表达式，判断首字母是否是英文字母
             if (sortString.matches("[A-Z]")) {
                music.setLetters(sortString.toUpperCase());

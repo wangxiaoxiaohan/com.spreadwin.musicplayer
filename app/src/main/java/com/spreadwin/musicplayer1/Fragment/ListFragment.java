@@ -1,16 +1,11 @@
 package com.spreadwin.musicplayer1.Fragment;
 
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spreadwin.musicplayer1.Adapter.MusicListAdapter;
@@ -29,6 +23,7 @@ import com.spreadwin.musicplayer1.event.LoopEvent;
 import com.spreadwin.musicplayer1.model.Music;
 import com.spreadwin.musicplayer1.service.BackService;
 import com.spreadwin.musicplayer1.utils.MediaUtils;
+import com.spreadwin.musicplayer1.utils.MusicComparator;
 import com.spreadwin.musicplayer1.utils.PinyinComparator;
 import com.spreadwin.musicplayer1.utils.PinyinUtils;
 import com.spreadwin.musicplayer1.utils.SortModel;
@@ -44,18 +39,16 @@ import java.util.List;
 /**
  * Created by LHD on 2018/4/13.
  */
-
 public class ListFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView mRecyclerView;
     private TextView loopTextView;
 
-    private List<Music> list = new ArrayList<Music>();
-    private List<SortModel> SourceDateList;
+    private ArrayList<Music> list = new ArrayList<Music>();
+    private ArrayList<Music> SourceDateList;
     public  static  final  String TAG="看wo";
     private   static MusicListAdapter adapter;
     private  int CurrentState;
-
 
 
     @Nullable
@@ -90,15 +83,10 @@ public class ListFragment extends Fragment {
 
         //获取歌曲列表 ，并根据歌曲拼音首字母将歌曲名字和歌手分别放入一个数组中；
         list = MediaUtils.getAudioList(getContext(), false);
-        String[] NameList=new String[list.size()];
-        String[] SingerList=new String[list.size()];
-        for (int i=0 ;i<list.size();i++){
-            NameList[i]=list.get(i).getTitle();
-            SingerList[i]=list.get(i).getArtist();
-        }
-        SourceDateList=filledData(NameList,SingerList);
+
+        SourceDateList=filledData(list);
         //使用集合的sort方法对首字母进行排序。
-        Collections.sort(SourceDateList,new PinyinComparator());
+        Collections.sort(SourceDateList,new MusicComparator());
         if (MediaUtils.getAudioList(getActivity(), false).size() == 0) {
             Log.d(TAG, "prepareFinish " + "completion");
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_TRADITIONAL);
@@ -113,25 +101,24 @@ public class ListFragment extends Fragment {
 
     }
      //用这个方法 获得一组包含了 名字和首字母大写的 Model
-    private List<SortModel> filledData(String[] musicTitle ,String[] singer) {
-        List<SortModel> mSortList = new ArrayList<>();
+    private ArrayList<Music> filledData(ArrayList<Music> musicList) {
+        ArrayList<Music> sortMusicList=new ArrayList<>();
 
-        for (int i = 0; i < musicTitle.length; i++) {
-            SortModel sortModel = new SortModel();
-            sortModel.setName(musicTitle[i]);
-            sortModel.setSinger(singer[i]);
+        for (int i = 0; i < musicList.size(); i++) {
+             Music music=musicList.get(i);
+
             //汉字转换成拼音
-            String sortString = PinyinUtils.getPingYin(musicTitle[i]).substring(0, 1).toUpperCase();
-            Log.d(TAG, "filledData: "+sortString);
+            String sortString = PinyinUtils.getPingYin(music.getTitle()).substring(0, 1).toUpperCase();
+            Log.d("Fragment", "filledData: "+sortString);
             // 正则表达式，判断首字母是否是英文字母
             if (sortString.matches("[A-Z]")) {
-                sortModel.setLetters(sortString.toUpperCase());
+               music.setLetters(sortString.toUpperCase());
             } else {
-                sortModel.setLetters("#");
+                music.setLetters("#");
             }
-            mSortList.add(sortModel);
+            sortMusicList.add(music);
         }
-        return mSortList;
+        return sortMusicList;
 
     }
 

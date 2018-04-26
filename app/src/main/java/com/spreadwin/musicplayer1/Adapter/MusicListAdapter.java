@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import com.spreadwin.musicplayer1.R;
 import com.spreadwin.musicplayer1.event.MasterEvent;
+import com.spreadwin.musicplayer1.model.Music;
 import com.spreadwin.musicplayer1.utils.SortModel;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ import java.util.List;
  */
 
 public class MusicListAdapter extends  RecyclerView.Adapter<MusicListAdapter.ViewHolder>{
-    private List<SortModel> mData;
+    private ArrayList<Music> mData;
     private Context mContext;
     private LayoutInflater mInflater;
     private boolean isPlay = false;
@@ -30,7 +32,7 @@ public class MusicListAdapter extends  RecyclerView.Adapter<MusicListAdapter.Vie
 
 
 
-    public  MusicListAdapter(Context context, List<SortModel> data){
+    public  MusicListAdapter(Context context, ArrayList<Music> data){
         mData=data;
         mInflater=LayoutInflater.from(context);
         this.mContext=context;
@@ -73,8 +75,8 @@ public class MusicListAdapter extends  RecyclerView.Adapter<MusicListAdapter.Vie
                           holder.tag.setVisibility(View.GONE);
 
                   }
-                   holder.MusicName.setText(mData.get(position).getName());
-                   holder.Singer.setText(mData.get(position).getSinger());
+                   holder.MusicName.setText(mData.get(position).getTitle());
+                   holder.Singer.setText(mData.get(position).getArtist());
 
                    holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                        @Override
@@ -84,10 +86,12 @@ public class MusicListAdapter extends  RecyclerView.Adapter<MusicListAdapter.Vie
                            EventBus.getDefault().post(masterEvent);
                        }
                    });
+                   //此处把写播放和没播放时候的情况都写上，避免recyclerview重用机制导致的图片错乱。
                    if (position==playPosition){
-                       holder.status.setImageResource(R.drawable.ic_play1);
-                   }else {
                        holder.status.setImageResource(R.drawable.bt_stop1);
+
+                   }else {
+                       holder.status.setImageResource(R.drawable.ic_play1);
                    }
 
 
